@@ -1,0 +1,291 @@
+:root {
+  /* light theme */
+  --header-desktop-image: url('./images/bg-desktop-light.jpg');
+  --header-mobile-image: url('./images/bg-mobile-light.jpg');
+  --theme-toggle-icon: url('./images/icon-moon.svg');
+
+  --bright-blue: hsl(220, 98%, 61%);
+  --bg-color: hsl(0, 0%, 98%);
+  --text-color: hsl(235, 19%, 35%);
+  --todo-bg-color: #fff;
+  --btn-text-color: hsl(236, 9%, 61%);
+  --border-color: hsl(233, 11%, 84%);
+}
+
+:root[data-theme='dark'] {
+  /* dark theme */
+  --header-desktop-image: url('./images/bg-desktop-dark.jpg');
+  --header-mobile-image: url('./images/bg-mobile-dark.jpg');
+  --theme-toggle-icon: url('./images/icon-sun.svg');
+
+  --bright-blue: hsl(220, 98%, 61%);
+  --bg-color: hsl(235, 21%, 11%);
+  --text-color: hsl(234, 39%, 85%);
+  --todo-bg-color: hsl(235, 24%, 19%);
+  --btn-text-color: hsl(234, 11%, 52%);
+  --border-color: hsl(237, 14%, 26%);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.8rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.header-image {
+  background-image: var(--header-desktop-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+}
+
+.theme-toggler {
+  background-image: var(--theme-toggle-icon);
+  background-repeat: no-repeat;
+  background-position: center;
+  /* background-size: cover; */
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+main {
+  width: 540px;
+  margin: -225px auto;
+}
+
+.app-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.app-title h1 {
+  color: #fff;
+  letter-spacing: 18px;
+}
+
+.input-todo {
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.input-todo > div {
+  height: 65px;
+  width: 70px;
+  background-color: var(--todo-bg-color);
+  display: flex;
+  justify-content: center;
+  border-radius: 5px 0 0 5px;
+  padding-top: 19px;
+}
+
+.circle {
+  display: block;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+}
+
+.circle.tick-mark {
+  background-image: url('./images/icon-check.svg'),
+    linear-gradient(to bottom right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  background-repeat: no-repeat;
+  background-position: center;
+  /* background-size: 65%, 100%; */
+}
+
+.circle.tick-mark + div {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.input-todo input {
+  width: 100%;
+  height: 65px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: inherit;
+  border-radius: 0 5px 5px 0;
+  outline: none;
+  border: none;
+  background-color: var(--todo-bg-color);
+}
+
+.wrapper {
+  background-color: var(--todo-bg-color);
+  border-radius: 5px;
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.2);
+}
+
+.todos-list {
+  list-style-type: none;
+}
+
+.todo-item {
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.todo-item > div {
+  display: flex;
+  align-items: center;
+}
+
+.todo-item > div > div {
+  margin-right: 20px;
+}
+
+.todo-item:hover .cross {
+  background-image: url('./images/icon-cross.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 18px;
+  height: 18px;
+}
+
+button {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.4rem;
+  color: var(--btn-text-color);
+  cursor: pointer;
+}
+
+button.active {
+  color: var(--bright-blue);
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  color: var(--btn-text-color);
+  /* font-size: 1.4rem; */
+}
+
+.middle-desktop button {
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+.middle-mobile {
+  display: none;
+}
+
+.message {
+  text-align: center;
+  margin-top: 50px;
+  color: var(--btn-text-color);
+}
+
+@media (max-width: 550px) {
+  body {
+    font-size: 1.2rem;
+  }
+
+  .header-image {
+    background-image: var(--header-mobile-image);
+    height: 200px;
+  }
+
+  .theme-toggler {
+    background-size: 80%;
+    width: 26px;
+    height: 26px;
+  }
+
+  .app-title {
+    margin-bottom: 35px;
+  }
+
+  .app-title h1 {
+    letter-spacing: 12px;
+    /* font-size: 2.6rem; */
+  }
+
+  .input-todo {
+    margin-bottom: 16px;
+  }
+
+  .input-todo input {
+    height: 45px;
+    font-size: inherit;
+  }
+
+  .input-todo > div {
+    height: 45px;
+    padding-top: 2px;
+  }
+
+  .input-todo > div > div {
+    margin-top: 10px;
+  }
+
+  .circle {
+    width: 20px;
+    height: 20px;
+  }
+
+  .circle.tick-mark {
+    background-size: 50%, 100%;
+  }
+
+  .todo-item {
+    padding: 16px;
+  }
+
+  .todo-item > div > div {
+    margin-right: 10px;
+  }
+
+  .todo-item:hover .cross {
+    width: 12px;
+    height: 12px;
+  }
+
+  main {
+    width: 330px;
+    margin: -155px auto;
+  }
+
+  .right button {
+    font-size: 1.2rem;
+  }
+
+  .middle-desktop {
+    display: none;
+  }
+
+  .message {
+    font-size: 1.8rem;
+  }
+
+  .middle-mobile {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 14px;
+    background-color: var(--todo-bg-color);
+    padding: 16px 60px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+  }
+}
