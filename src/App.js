@@ -11,7 +11,7 @@ const initialDnDState = {
 }
 
 const App = () => {
-  const [todos, setTodos] = useState(initTodos)
+  const [todos, setTodos] = useState([])
   const [state, setState] = useState(0) // 0 = All, 1 = Active, 2 = Completed
   const [theme, setTheme] = useState('light')
   const [task, setTask] = useState('')
@@ -82,29 +82,21 @@ const App = () => {
 
   const addTodo = e => {
     if (e.keyCode === 13) {
-      const newTodo = {
-        _id: Date.now(),
-        task,
-        completed: false,
+      if (task.trim() !== '') {
+        const newTodo = {
+          _id: Date.now(),
+          task: task.trim(),
+          completed: false,
+        }
+        setTodos([...todos, newTodo])
       }
-      setTodos([...todos, newTodo])
       setTask('')
     }
   }
 
-  const clearCompleted = () => {
-    const newTodos = todos.filter(item => !item.completed)
-    setTodos(newTodos)
-  }
-
   useEffect(() => {
     const storedTodos = localStorage.getItem('todos')
-
-    if (storedTodos !== null) {
-      setTodos(JSON.parse(storedTodos))
-    } else {
-      setTodos(initTodos)
-    }
+    setTodos(storedTodos !== null ? JSON.parse(storedTodos) : initTodos)
   }, [])
 
   useEffect(() => {
@@ -168,7 +160,11 @@ const App = () => {
               </button>
             </div>
             <div className='right'>
-              <button onClick={clearCompleted}>Clear Completed</button>
+              <button
+                onClick={() => setTodos(todos.filter(item => !item.completed))}
+              >
+                Clear Completed
+              </button>
             </div>
           </footer>
         </div>

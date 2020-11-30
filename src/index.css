@@ -66,7 +66,7 @@ body {
 
 main {
   width: 540px;
-  margin: -225px auto;
+  margin: -225px auto 0;
 }
 
 .app-title {
@@ -101,6 +101,7 @@ main {
   width: 25px;
   height: 25px;
   border-radius: 50%;
+  background-color: var(--todo-bg-color);
   border: 1px solid var(--border-color);
 }
 
@@ -163,6 +164,23 @@ main {
   height: 18px;
 }
 
+.todo-item:hover .circle::before {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background-image: linear-gradient(
+    to bottom right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+  top: -2px;
+  bottom: -2px;
+  left: -2px;
+  right: -2px;
+  z-index: -1;
+  border: 1px solid transparent;
+}
+
 button {
   border: none;
   outline: none;
@@ -199,7 +217,7 @@ footer {
 
 .message {
   text-align: center;
-  margin-top: 50px;
+  margin: 50px 0;
   color: var(--btn-text-color);
 }
 
@@ -274,7 +292,7 @@ footer {
 
   main {
     width: 330px;
-    margin: -155px auto;
+    margin: -155px auto 0;
   }
 
   .right button {
@@ -285,10 +303,6 @@ footer {
     display: none;
   }
 
-  .message {
-    font-size: 1.8rem;
-  }
-
   .middle-mobile {
     display: flex;
     justify-content: space-around;
@@ -297,5 +311,10 @@ footer {
     padding: 16px 60px;
     border-radius: 5px;
     box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  .message {
+    font-size: 1.8rem;
+    margin: 40px 0 65px;
   }
 }
