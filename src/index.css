@@ -10,6 +10,7 @@
   --todo-bg-color: #fff;
   --btn-text-color: hsl(236, 9%, 61%);
   --border-color: hsl(233, 11%, 84%);
+  --hover-color: hsl(235, 19%, 35%);
 }
 
 :root[data-theme='dark'] {
@@ -24,6 +25,7 @@
   --todo-bg-color: hsl(235, 24%, 19%);
   --btn-text-color: hsl(234, 11%, 52%);
   --border-color: hsl(237, 14%, 26%);
+  --hover-color: hsl(236, 33%, 92%);
 }
 
 *,
@@ -95,7 +97,7 @@ main {
 }
 
 .circle {
-  display: block;
+  position: relative;
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -168,6 +170,10 @@ button {
   font-size: 1.4rem;
   color: var(--btn-text-color);
   cursor: pointer;
+}
+
+button:hover {
+  color: var(--hover-color);
 }
 
 button.active {
@@ -257,7 +263,11 @@ footer {
     margin-right: 10px;
   }
 
+  .todo-item .cross,
   .todo-item:hover .cross {
+    background-image: url('./images/icon-cross.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 12px;
     height: 12px;
   }
