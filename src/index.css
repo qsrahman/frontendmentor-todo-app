@@ -63,7 +63,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 45px;
 }
 
 .app-title h1 {
@@ -83,7 +83,7 @@ main {
 
 .input-todo {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
 .input-todo > div {
