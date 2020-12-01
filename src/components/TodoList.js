@@ -19,13 +19,7 @@ const TodoList = ({
         data-position={i}
       >
         <div>
-          <div
-            className={
-              todo.completed
-                ? 'circle border-gradient tick-mark'
-                : 'circle border-gradient'
-            }
-          ></div>
+          <div className={todo.completed ? 'circle tick-mark' : 'circle'}></div>
           <div>{todo.task}</div>
         </div>
         <div className='cross'></div>

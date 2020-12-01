@@ -54,19 +54,9 @@ body {
   height: 300px;
 }
 
-.theme-toggler {
-  background-image: var(--theme-toggle-icon);
-  background-repeat: no-repeat;
-  background-position: center;
-  /* background-size: cover; */
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
-}
-
 main {
   width: 540px;
-  margin: -225px auto 0;
+  margin: -230px auto 0;
 }
 
 .app-title {
@@ -81,9 +71,19 @@ main {
   letter-spacing: 18px;
 }
 
+.theme-toggler {
+  background-image: var(--theme-toggle-icon);
+  background-repeat: no-repeat;
+  background-position: center;
+  /* background-size: cover; */
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
 .input-todo {
-  margin-bottom: 20px;
   display: flex;
+  margin-bottom: 20px;
 }
 
 .input-todo > div {
@@ -94,6 +94,17 @@ main {
   justify-content: center;
   border-radius: 5px 0 0 5px;
   padding-top: 19px;
+}
+
+.input-todo input {
+  width: 100%;
+  height: 65px;
+  font-family: inherit;
+  font-size: inherit;
+  border-radius: 0 5px 5px 0;
+  outline: none;
+  border: none;
+  background-color: var(--todo-bg-color);
 }
 
 .circle {
@@ -116,17 +127,6 @@ main {
 .circle.tick-mark + div {
   text-decoration: line-through;
   opacity: 0.5;
-}
-
-.input-todo input {
-  width: 100%;
-  height: 65px;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: inherit;
-  border-radius: 0 5px 5px 0;
-  outline: none;
-  border: none;
-  background-color: var(--todo-bg-color);
 }
 
 .wrapper {
@@ -165,7 +165,7 @@ main {
   height: 18px;
 }
 
-.todo-item:hover .circle::before {
+.todo-item:hover .circle::after {
   content: '';
   position: absolute;
   border-radius: 50%;
@@ -179,7 +179,6 @@ main {
   left: -2px;
   right: -2px;
   z-index: -1;
-  border: 1px solid transparent;
 }
 
 button {
@@ -218,7 +217,7 @@ footer {
 
 .message {
   text-align: center;
-  margin: 50px 0;
+  margin: 45px 0;
   color: var(--btn-text-color);
 }
 
