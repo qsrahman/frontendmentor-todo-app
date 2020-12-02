@@ -2,70 +2,11 @@ import { useState, useEffect } from 'react'
 import initTodos from './todos'
 import TodoList from './components/TodoList'
 
-const initialDnDState = {
-  draggedFrom: null,
-  draggedTo: null,
-  isDragging: false,
-  originalOrder: [],
-  updatedOrder: [],
-}
-
 const App = () => {
   const [todos, setTodos] = useState([])
   const [state, setState] = useState(0) // 0 = All, 1 = Active, 2 = Completed
   const [theme, setTheme] = useState('light')
   const [task, setTask] = useState('')
-  const [dragAndDrop, setDragAndDrop] = useState(initialDnDState)
-
-  const onDragStart = e => {
-    const initialPosition = Number(e.currentTarget.dataset.position)
-
-    setDragAndDrop({
-      ...dragAndDrop,
-      draggedFrom: initialPosition,
-      isDragging: true,
-      originalOrder: todos,
-    })
-
-    e.dataTransfer.setData('text/html', '')
-  }
-
-  const onDragOver = e => {
-    e.preventDefault()
-
-    let newList = dragAndDrop.originalOrder
-    const draggedFrom = dragAndDrop.draggedFrom
-    const draggedTo = Number(e.currentTarget.dataset.position)
-    const itemDragged = newList[draggedFrom]
-    const remainingItems = newList.filter(
-      (item, index) => index !== draggedFrom
-    )
-
-    newList = [
-      ...remainingItems.slice(0, draggedTo),
-      itemDragged,
-      ...remainingItems.slice(draggedTo),
-    ]
-
-    if (draggedTo !== dragAndDrop.draggedTo) {
-      setDragAndDrop({
-        ...dragAndDrop,
-        updatedOrder: newList,
-        draggedTo: draggedTo,
-      })
-    }
-  }
-
-  const onDrop = e => {
-    setTodos(dragAndDrop.updatedOrder)
-
-    setDragAndDrop({
-      ...dragAndDrop,
-      draggedFrom: null,
-      draggedTo: null,
-      isDragging: false,
-    })
-  }
 
   const toggleTheme = () => {
     const tm = theme === 'light' ? 'dark' : 'light'
@@ -92,6 +33,15 @@ const App = () => {
       }
       setTask('')
     }
+  }
+
+  const handleOnDragEnd = result => {
+    if (!result.destination) return
+
+    const items = [...todos]
+    const [reorderedItem] = items.splice(result.source.index, 1)
+    items.splice(result.destination.index, 0, reorderedItem)
+    setTodos(items)
   }
 
   useEffect(() => {
@@ -129,9 +79,7 @@ const App = () => {
             state={state}
             todos={todos}
             handleClick={handleClick}
-            onDragStart={onDragStart}
-            onDragOver={onDragOver}
-            onDrop={onDrop}
+            handleOnDragEnd={handleOnDragEnd}
           />
           <footer>
             <div className='left'>
