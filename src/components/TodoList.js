@@ -7,18 +7,22 @@ const TodoList = ({ state, todos, handleClick, handleOnDragEnd }) => {
         {provided => (
           <li
             className='todo-item'
-            onClick={() => handleClick(todo._id)}
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
+            <div className='cross' onClick={() => handleClick(todo._id)}></div>
             <div>
-              <div
-                className={todo.completed ? 'circle tick-mark' : 'circle'}
-              ></div>
-              <div>{todo.task}</div>
+              <div className='outer-circle'>
+                <div
+                  onClick={() => handleClick(todo._id)}
+                  className={todo.completed ? 'circle tick-mark' : 'circle'}
+                ></div>
+              </div>
+              <div className={todo.completed ? 'completed' : ''}>
+                {todo.task}
+              </div>
             </div>
-            <div className='cross'></div>
           </li>
         )}
       </Draggable>

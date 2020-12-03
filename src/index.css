@@ -75,7 +75,6 @@ main {
   background-image: var(--theme-toggle-icon);
   background-repeat: no-repeat;
   background-position: center;
-  /* background-size: cover; */
   width: 32px;
   height: 32px;
   cursor: pointer;
@@ -107,10 +106,28 @@ main {
   background-color: var(--todo-bg-color);
 }
 
+.outer-circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: var(--todo-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.outer-circle:hover {
+  background-image: linear-gradient(
+    to bottom right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+  cursor: pointer;
+}
+
 .circle {
-  position: relative;
-  width: 25px;
-  height: 25px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background-color: var(--todo-bg-color);
   border: 1px solid var(--border-color);
@@ -121,10 +138,26 @@ main {
     linear-gradient(to bottom right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
   background-repeat: no-repeat;
   background-position: center;
-  /* background-size: 65%, 100%; */
 }
 
-.circle.tick-mark + div {
+.cross {
+  order: 1;
+}
+
+.circle:hover,
+.cross:hover {
+  cursor: pointer;
+}
+
+.cross:hover ~ div .outer-circle {
+  background-image: linear-gradient(
+    to bottom right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+}
+
+.completed {
   text-decoration: line-through;
   opacity: 0.5;
 }
@@ -145,7 +178,6 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
 }
 
 .todo-item > div {
@@ -163,22 +195,6 @@ main {
   background-size: cover;
   width: 18px;
   height: 18px;
-}
-
-.todo-item:hover .circle::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  background-image: linear-gradient(
-    to bottom right,
-    hsl(192, 100%, 67%),
-    hsl(280, 87%, 65%)
-  );
-  top: -2px;
-  bottom: -2px;
-  left: -2px;
-  right: -2px;
-  z-index: -1;
 }
 
 button {
@@ -203,7 +219,6 @@ footer {
   justify-content: space-between;
   padding: 20px;
   color: var(--btn-text-color);
-  /* font-size: 1.4rem; */
 }
 
 .middle-desktop button {
@@ -243,7 +258,6 @@ footer {
 
   .app-title h1 {
     letter-spacing: 12px;
-    /* font-size: 2.6rem; */
   }
 
   .input-todo {
@@ -264,9 +278,18 @@ footer {
     margin-top: 10px;
   }
 
+  .outer-circle {
+    width: 22px;
+    height: 22px;
+  }
+
   .circle {
     width: 20px;
     height: 20px;
+  }
+
+  .cross:hover ~ div .outer-circle {
+    background-image: none;
   }
 
   .circle.tick-mark {

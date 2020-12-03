@@ -63,7 +63,9 @@ const App = () => {
         </div>
         <div className='input-todo'>
           <div>
-            <div className='circle'></div>
+            <div className='outer-circle'>
+              <div className='circle'></div>
+            </div>
           </div>
           <input
             type='text'
