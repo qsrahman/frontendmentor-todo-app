@@ -1,6 +1,12 @@
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
-const TodoList = ({ state, todos, handleClick, handleOnDragEnd }) => {
+const TodoList = ({
+  state,
+  todos,
+  toggleTodo,
+  removeTodo,
+  handleOnDragEnd,
+}) => {
   const createLi = (todo, i) => {
     return (
       <Draggable key={todo._id} draggableId={todo._id.toString()} index={i}>
@@ -11,11 +17,11 @@ const TodoList = ({ state, todos, handleClick, handleOnDragEnd }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <div className='cross' onClick={() => handleClick(todo._id)}></div>
+            <div className='cross' onClick={() => removeTodo(todo._id)}></div>
             <div>
               <div className='outer-circle'>
                 <div
-                  onClick={() => handleClick(todo._id)}
+                  onClick={() => toggleTodo(todo._id)}
                   className={todo.completed ? 'circle tick-mark' : 'circle'}
                 ></div>
               </div>

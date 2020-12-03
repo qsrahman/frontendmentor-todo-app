@@ -14,10 +14,22 @@ const App = () => {
     document.documentElement.setAttribute('data-theme', tm)
   }
 
-  const handleClick = id => {
+  const toggleTodo = id => {
     const idx = todos.findIndex(todo => todo._id === id)
     const newTodos = [...todos]
+
     newTodos[idx].completed = !newTodos[idx].completed
+    setTodos(newTodos)
+  }
+
+  const removeTodo = id => {
+    const idx = todos.findIndex(todo => todo._id === id)
+    const newTodos = [...todos]
+
+    if (idx !== -1) {
+      newTodos.splice(idx, 1)
+    }
+
     setTodos(newTodos)
   }
 
@@ -80,7 +92,8 @@ const App = () => {
           <TodoList
             state={state}
             todos={todos}
-            handleClick={handleClick}
+            toggleTodo={toggleTodo}
+            removeTodo={removeTodo}
             handleOnDragEnd={handleOnDragEnd}
           />
           <footer>
